@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # rm -rf ./docs-old
-mv  ./docs ./docs-old
-mkdir ./docs
+mkdir -p ./docs-old
+mkdir -p ./docs
+
+cp -rf ./docs/* ./docs-old/
+rm -rf ./docs/*
 cp -r ../k9-frontend/build/* ./docs/
