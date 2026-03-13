@@ -36,15 +36,21 @@ fi
 mkdir -p "$BUILD_DIR"
 cp -r "$CLONE_DIR/build/"* "$BUILD_DIR/"
 
+# Add CNAME for custom domain
+echo "vesting.k9finance.com" > "$BUILD_DIR/CNAME"
+
 # Clean up the clone
 rm -rf "$CLONE_DIR"
 
 echo "Build artifacts copied to $BUILD_DIR"
 echo ""
 
-# Stage, commit, and push
+# Stage, commit, and push to main
 git add docs/
 git commit -m "updated build"
 git push
 
-echo "Pushed to remote."
+# Push to production (which triggers GitHub Pages deployment)
+git push origin main:production --force
+
+echo "Pushed to main and production."
